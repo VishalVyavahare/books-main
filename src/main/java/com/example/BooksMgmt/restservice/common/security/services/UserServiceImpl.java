@@ -5,6 +5,9 @@ import com.example.BooksMgmt.restservice.common.security.repository.UserReposito
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Vishal Vyavahare
+ */
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {

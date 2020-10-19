@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,10 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-import javax.validation.Valid;
 
+/**
+ * @author Vishal Vyavahare
+ */
 @RestController
-@RequestMapping("/client")
+@RequestMapping(value = {"/client", "/user", "/customer"})
 @RequiredArgsConstructor
 public class UserController {
 
@@ -34,6 +37,7 @@ public class UserController {
         return MvcUriComponentsBuilder.fromController(getClass());
     }
 
+    @ApiOperation(value = "Generated an authentication token for user")
     @PostMapping("token")
     public User login(@RequestParam("user") String username, @RequestParam("password") String pwd) throws Exception {
         if (StringUtils.isEmpty(userService.findByUserNameAndPassword(username, pwd))) {
@@ -47,9 +51,9 @@ public class UserController {
     }
 
 
-    @ApiOperation(value = "Create a models belonging the project used for authentication")
+    @ApiOperation(value = "Create a user which will be used for authentication")
     @PostMapping("register")
-    public ResponseEntity<User> createModel(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 
         User userCreated = userService.createUser(user);
         UriComponents uri =

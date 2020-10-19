@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+/**
+ *  @author Vishal Vyavahare
+ */
 @Api(tags = "Users API", value = "All the User related API")
 @RequiredArgsConstructor
 @RestController
